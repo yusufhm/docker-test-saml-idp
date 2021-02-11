@@ -1,5 +1,5 @@
-FROM php:7.1-apache
-MAINTAINER Kristoph Junge <kristoph.junge@gmail.com>
+FROM php:7-apache
+LABEL maintainer="Kristoph Junge <kristoph.junge@gmail.com>"
 
 # Utilities
 RUN apt-get update && \
@@ -7,8 +7,7 @@ RUN apt-get update && \
     rm -r /var/lib/apt/lists/*
 
 # SimpleSAMLphp
-ARG SIMPLESAMLPHP_VERSION=1.15.2
-RUN curl -s -L -o /tmp/simplesamlphp.tar.gz https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION.tar.gz && \
+RUN curl -s -L -o /tmp/simplesamlphp.tar.gz "https://simplesamlphp.org/download?latest" && \
     tar xzf /tmp/simplesamlphp.tar.gz -C /tmp && \
     rm -f /tmp/simplesamlphp.tar.gz  && \
     mv /tmp/simplesamlphp-* /var/www/simplesamlphp && \
